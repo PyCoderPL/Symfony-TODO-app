@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<td class="fw-bold">ID</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">Task</td>
+					<td>Make TODO list</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">Category</td>
+					<td>Programming</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">Deadline</td>
+					<td>31-07-2023</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">Description</td>
+					<td>Make TODO app in Symfony for company as recrutment task.</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-primary">Edit</button>
+		<button class="btn btn-success">Save</button>
+	</div>
+{% endblock %}

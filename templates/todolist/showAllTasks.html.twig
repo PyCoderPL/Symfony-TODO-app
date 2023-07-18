@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		<h1>Tasks</h1>
+		<hr>
+		<h3>List name: programming</h3>
+		<hr>
+		<table class="table table-striped">
+			<thead>
+				<tr class="fw-bold">
+					<td>ID</td>
+					<td>Task</td>
+					<td>Category</td>
+					<td>Deadline</td>
+					<td>Finished</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>
+						<a href="{{ path('show.one_task', {id: 1}) }}">Make TODO list</a>
+					</td>
+					<td>PHP</td>
+					<td>31-07-2023</td>
+					<td>
+						<div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>
+						<a href="{{path('show.one_task', {id: 2})}}">Train frontend</a>
+					</td>
+					<td>React</td>
+					<td>31-07-2023</td>
+					<td>
+						<div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h4 class="text text-success">Completed</h4>
+		<hr>
+		<table class="table table-striped">
+			<thead>
+				<tr class="fw-bold">
+					<td>ID</td>
+					<td>Task</td>
+					<td>Category</td>
+					<td>Deadline</td>
+					<td>Finished</td>
+					<td>Date</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>3</td>
+					<td>
+						<a href="#">Make TODO list</a>
+					</td>
+					<td>PHP</td>
+					<td>31-07-2023</td>
+					<td>
+						<div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+							<label class="form-check-label" for="flexSwitchCheckChecked"></label>
+						</div>
+					</td>
+					<td>31-07-2023</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>
+						<a href="#">Train frontend</a>
+					</td>
+					<td>React</td>
+					<td>31-07-2023</td>
+					<td>
+						<div class="form-check form-switch">
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+							<label class="form-check-label" for="flexSwitchCheckChecked"></label>
+						</div>
+					</td>
+					<td>31-07-2023</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

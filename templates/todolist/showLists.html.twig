@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		<h1>TODO lists</h1>
+		<hr>
+		<table class="table table-striped">
+			<thead>
+				<tr class="fw-bold">
+					<td>ID</td>
+					<td>List name</td>
+					<td>Tasks</td>
+					<td>Progress</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>
+						<a href="{{ path('show.all_tasks') }}">Programming</a>
+					</td>
+					<td>5</td>
+					<td>50%</td>
+					<td class="text text-danger">Delete</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>
+						<a href="#">Holiday</a>
+					</td>
+					<td>2</td>
+					<td>90%</td>
+					<td class="text text-danger">Delete</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>
+						<a href="#">Home</a>
+					</td>
+					<td>5</td>
+					<td>20%</td>
+					<td class="text text-danger">Delete</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
