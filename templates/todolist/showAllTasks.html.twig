@@ -4,49 +4,49 @@
 	<div class="container">
 		<h1>Tasks</h1>
 		<hr>
-		<h3>List name: programming</h3>
-		<hr>
 		<table class="table table-striped">
 			<thead>
 				<tr class="fw-bold">
 					<td>ID</td>
 					<td>Task</td>
+					<td>List</td>
 					<td>Category</td>
 					<td>Deadline</td>
 					<td>Finished</td>
+					<td>Action</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>
-						<a href="{{ path('show.one_task', {id: 1}) }}">Make TODO list</a>
-					</td>
-					<td>PHP</td>
-					<td>31-07-2023</td>
-					<td>
-						<div class="form-check form-switch">
-							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>
-						<a href="{{path('show.one_task', {id: 2})}}">Train frontend</a>
-					</td>
-					<td>React</td>
-					<td>31-07-2023</td>
-					<td>
-						<div class="form-check form-switch">
-							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-						</div>
-					</td>
-				</tr>
+				{% for task in tasks %}
+					{% if task.finished == 0 %}
+						<tr>
+							<td>{{task.id}}</td>
+							<td>
+								<a href="{{ path('show.one_task', {listname: task.listname, id: task.id}) }}">{{task.task}}</a>
+							</td>
+							<td>{{ task.listname }}</td>
+							<td>{{task.category}}</td>
+							<td>{{task.deadline|date('Y-m-d')}}</td>
+							<td>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="">
+								</div>
+							</td>
+							<td>
+								<button class="btn btn-outline-warning btn-sm">Edit</button>
+								<button class="btn btn-outline-danger btn-sm">Delete</button>
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
 			</tbody>
 		</table>
+		<a href="#">
+			<button type="button" class="btn btn-success btn-sm">Add task</button>
+		</a>
 
-		<h4 class="text text-success">Completed</h4>
+		<br><br><br>
+		<h3 class="text text-success">Completed</h3>
 		<hr>
 		<table class="table table-striped">
 			<thead>
@@ -60,37 +60,28 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>3</td>
-					<td>
-						<a href="#">Make TODO list</a>
-					</td>
-					<td>PHP</td>
-					<td>31-07-2023</td>
-					<td>
-						<div class="form-check form-switch">
-							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-							<label class="form-check-label" for="flexSwitchCheckChecked"></label>
-						</div>
-					</td>
-					<td>31-07-2023</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>
-						<a href="#">Train frontend</a>
-					</td>
-					<td>React</td>
-					<td>31-07-2023</td>
-					<td>
-						<div class="form-check form-switch">
-							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-							<label class="form-check-label" for="flexSwitchCheckChecked"></label>
-						</div>
-					</td>
-					<td>31-07-2023</td>
-				</tr>
+				{% for task in tasks %}
+					{% if task.finished == 1 %}
+						<tr>
+							<td>{{task.id}}</td>
+							<td>
+								<a href="{{ path('show.one_task', {listname: task.listname, id: task.id}) }}">{{task.task}}</a>
+							</td>
+							<td>{{task.category}}</td>
+							<td>{{task.deadline|date('Y-m-d')}}</td>
+							<td>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="" checked>
+								</div>
+							</td>
+							<td>{{task.enddate|date('Y-m-d')}}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
 			</tbody>
 		</table>
+		<a href="{{ path('show.lists') }}">
+			<button type="button" class="btn btn-primary btn-sm">Back</button>
+		</a>
 	</div>
 {% endblock %}

@@ -2,31 +2,49 @@
 
 {% block body %}
 	<div class="container">
+		<h2>Task details</h2>
+		<hr>
 		<table class="table table-striped">
 			<tbody>
 				<tr>
 					<td class="fw-bold">ID</td>
-					<td>1</td>
+					<td>{{ task.id }}</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">List</td>
+					<td>{{ task.listname }}</td>
 				</tr>
 				<tr>
 					<td class="fw-bold">Task</td>
-					<td>Make TODO list</td>
+					<td>{{ task.task }}</td>
 				</tr>
 				<tr>
 					<td class="fw-bold">Category</td>
-					<td>Programming</td>
+					<td>{{ task.category }}</td>
 				</tr>
 				<tr>
 					<td class="fw-bold">Deadline</td>
-					<td>31-07-2023</td>
+					<td>{{task.deadline|date('Y-m-d')}}</td>
 				</tr>
 				<tr>
 					<td class="fw-bold">Description</td>
-					<td>Make TODO app in Symfony for company as recrutment task.</td>
+					<td>{{ task.description }}</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">Finished</td>
+					<td>
+						{% if task.finished == 1 %}
+							yes
+						{% else %}
+							no
+						{% endif %}
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-primary">Edit</button>
-		<button class="btn btn-success">Save</button>
+		<a href="{{ path('show.all_tasks', {listname: task.listname}) }}">
+			<button class="btn btn-primary btn-sm">Back</button>
+		</a>
+
 	</div>
 {% endblock %}

@@ -9,40 +9,35 @@
 				<tr class="fw-bold">
 					<td>ID</td>
 					<td>List name</td>
+					<td>Description</td>
 					<td>Tasks</td>
 					<td>Progress</td>
 					<td>Action</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>
-						<a href="{{ path('show.all_tasks') }}">Programming</a>
-					</td>
-					<td>5</td>
-					<td>50%</td>
-					<td class="text text-danger">Delete</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>
-						<a href="#">Holiday</a>
-					</td>
-					<td>2</td>
-					<td>90%</td>
-					<td class="text text-danger">Delete</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>
-						<a href="#">Home</a>
-					</td>
-					<td>5</td>
-					<td>20%</td>
-					<td class="text text-danger">Delete</td>
-				</tr>
+				{% for list in lists %}
+					<tr>
+						<td>{{ list.id }}</td>
+						<td>
+							<a href="{{ path('show.all_tasks', { listname: list.listname }) }}">{{ list.listname }}</a>
+						</td>
+						<td>{{ list.description }}</td>
+						{% for taskstat in taskstats %}
+							{% if list.listname == taskstat.listname %}
+								<td>
+									{{ taskstat.tasks }}
+								</td>
+								<td>{{ ((taskstat.progress / taskstat.tasks)*100)|number_format('0', '.', ' ') }}%</td>
+							{% endif %}
+						{% endfor %}
+						<td>
+							<button class="btn btn-danger btn-sm">Delete</button>
+						</td>
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
+		<button class="btn btn-success">Create new list</button>
 	</div>
 {% endblock %}
