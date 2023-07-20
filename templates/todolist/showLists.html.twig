@@ -2,6 +2,11 @@
 
 {% block body %}
 	<div class="container">
+		{% for message in app.flashes('create_list_success') %}
+			<div class="alert alert-success d-flex justify-content-center">
+				{{ message }}
+			</div>
+		{% endfor %}
 		<h1>TODO lists</h1>
 		<hr>
 		<table class="table table-striped">
@@ -9,7 +14,7 @@
 				<tr class="fw-bold">
 					<td>ID</td>
 					<td>List name</td>
-					<td>Description</td>
+					<td>About list</td>
 					<td>Tasks</td>
 					<td>Progress</td>
 					<td>Action</td>
@@ -22,22 +27,32 @@
 						<td>
 							<a href="{{ path('show.all_tasks', { listname: list.listname }) }}">{{ list.listname }}</a>
 						</td>
-						<td>{{ list.description }}</td>
-						{% for taskstat in taskstats %}
-							{% if list.listname == taskstat.listname %}
-								<td>
-									{{ taskstat.tasks }}
-								</td>
-								<td>{{ ((taskstat.progress / taskstat.tasks)*100)|number_format('0', '.', ' ') }}%</td>
-							{% endif %}
-						{% endfor %}
+						<td>{{ list.aboutlist }}</td>
 						<td>
-							<button class="btn btn-danger btn-sm">Delete</button>
+							{% for taskstat in taskstats %}
+								{% if taskstat.listname == list.listname %}
+									{{ taskstat.tasks }}
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td>
+							{% for taskstat in taskstats %}
+								{% if taskstat.listname == list.listname %}
+									{{ ((taskstat.progress / taskstat.tasks)*100)|number_format('0', '.', ' ') }}%
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td>
+							<a href="#">
+								<button class="btn btn-danger btn-sm">Delete</button>
+							</a>
 						</td>
 					</tr>
 				{% endfor %}
 			</tbody>
-		</table>
-		<button class="btn btn-success">Create new list</button>
-	</div>
-{% endblock %}
+		</tbody>
+	</table>
+	<a href="{{ path('show.create_new_list') }}">
+		<button class="btn btn-success btn-sm">Create new list</button>
+	</a>
+</div>{% endblock %}

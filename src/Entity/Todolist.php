@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ToDoListRepository;
+use App\Repository\TodolistRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ToDoListRepository::class)]
+#[ORM\Entity(repositoryClass: TodolistRepository::class)]
 class Todolist
 {
     #[ORM\Id]
@@ -17,7 +17,7 @@ class Todolist
     private ?string $listname = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $description = null;
+    private ?string $aboutlist = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class Todolist
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getAboutlist(): ?string
     {
-        return $this->description;
+        return $this->aboutlist;
     }
 
-    public function setDescription(string $description): static
+    public function setAboutlist(string $aboutlist): static
     {
-        $this->description = $description;
+        $this->aboutlist = $aboutlist;
 
         return $this;
     }

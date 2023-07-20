@@ -29,7 +29,7 @@ class Task
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $deadline = null;
 
-    #[ORM\Column]
+    #[ORM\Column()]
     private ?bool $finished = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

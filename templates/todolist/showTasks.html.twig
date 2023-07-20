@@ -2,7 +2,15 @@
 
 {% block body %}
 	<div class="container">
+		{% for message in app.flashes('add_task_success') %}
+			<div class="alert alert-success d-flex justify-content-center">
+				{{ message }}
+			</div>
+		{% endfor %}
 		<h1>Tasks</h1>
+		<a href="{{ path('show.lists') }}">
+			<button type="button" class="btn btn-primary btn-sm">Back to lists</button>
+		</a>
 		<hr>
 		<table class="table table-striped">
 			<thead>
@@ -22,11 +30,11 @@
 						<tr>
 							<td>{{task.id}}</td>
 							<td>
-								<a href="{{ path('show.one_task', {listname: task.listname, id: task.id}) }}">{{task.task}}</a>
+								<a href="{{ path('show.one_task', {listname: task.listname, id: task.id}) }}">{{ task.task }}</a>
 							</td>
 							<td>{{ task.listname }}</td>
-							<td>{{task.category}}</td>
-							<td>{{task.deadline|date('Y-m-d')}}</td>
+							<td>{{ task.category }}</td>
+							<td>{{ task.deadline|date('Y-m-d') }}</td>
 							<td>
 								<div class="form-check form-switch">
 									<input class="form-check-input" type="checkbox" id="">
@@ -41,10 +49,9 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<a href="#">
+		<a href="{{ path('show.add_new_task', {listname: listname}) }}">
 			<button type="button" class="btn btn-success btn-sm">Add task</button>
 		</a>
-
 		<br><br><br>
 		<h3 class="text text-success">Completed</h3>
 		<hr>
@@ -80,8 +87,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-		<a href="{{ path('show.lists') }}">
-			<button type="button" class="btn btn-primary btn-sm">Back</button>
-		</a>
 	</div>
 {% endblock %}

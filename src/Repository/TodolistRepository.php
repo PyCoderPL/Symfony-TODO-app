@@ -21,6 +21,24 @@ class TodolistRepository extends ServiceEntityRepository
         parent::__construct($registry, Todolist::class);
     }
 
+    public function save(Post $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Post $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     //    /**
     //     * @return Todolist[] Returns an array of Todolist objects
     //     */
