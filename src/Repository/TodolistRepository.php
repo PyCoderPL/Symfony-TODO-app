@@ -20,8 +20,23 @@ class TodolistRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Todolist::class);
     }
+    // my custom function
+    public function getListInfo()
+    {
+        return $this->createQueryBuilder(alias: 'list')
+            ->select(select: 'list.id')
+            ->addSelect(select: 'list.listname')
+            ->addSelect(select: 'list.description')
+            ->addSelect(select: 'count(task.id) as tasks')
+            ->addSelect(select: 'sum(task.finished) as progress')
+            ->leftJoin(join: 'list.tasks', alias: 'task')
+            ->groupBy('list.listname')
+            ->orderBy('list.id')
+            ->getQuery()
+            ->getResult();
+    }
 
-    public function save(Post $entity, bool $flush = false): void
+    public function save(Todolist $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +45,7 @@ class TodolistRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Post $entity, bool $flush = false): void
+    public function remove(Todolist $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

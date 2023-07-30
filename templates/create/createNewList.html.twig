@@ -3,7 +3,9 @@
 {% block body %}
 	<div class="container">
 		<h1>Create new list</h1>
-		{# <hr> #}
+		<a href="{{ path('app.lists') }}">
+			<button class="btn btn-primary btn-sm">Back to lists</button>
+		</a><br><br>
 		{{ form(form) }}
 
 		</div>

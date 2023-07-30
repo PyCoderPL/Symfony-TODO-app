@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="container">
+
+		<h1>Edit task</h1>
+
+		<a href="{{ path('app.all_tasks', {listname: listname}) }}">
+			<button class="btn btn-primary btn-sm mb-3">Back to tasks</button>
+		</a>
+
+		{{ form(form) }}
+
+		</div>
+	{% endblock %}

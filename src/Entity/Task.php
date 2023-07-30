@@ -20,9 +20,6 @@ class Task
     #[ORM\Column(length: 50)]
     private ?string $category = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $listname = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
@@ -33,7 +30,11 @@ class Task
     private ?bool $finished = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $enddate = null;
+    private ?\DateTimeInterface $end = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Todolist $list = null;
 
     public function getId(): ?int
     {
@@ -48,18 +49,6 @@ class Task
     public function setTask(string $task): static
     {
         $this->task = $task;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): static
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -100,27 +89,44 @@ class Task
         return $this;
     }
 
-    public function getEnddate(): ?\DateTimeInterface
+    public function getCategory(): ?string
     {
-        return $this->enddate;
+        return $this->category;
     }
 
-    public function setEnddate(?\DateTimeInterface $enddate): static
+    public function setCategory(string $category): static
     {
-        $this->enddate = $enddate;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getListname(): ?string
+    public function getEnd(): ?\DateTimeInterface
     {
-        return $this->listname;
+        return $this->end;
     }
 
-    public function setListname(string $listname): static
+    public function setEnd(?\DateTimeInterface $end): static
     {
-        $this->listname = $listname;
+        $this->end = $end;
 
         return $this;
+    }
+
+    public function getList(): ?Todolist
+    {
+        return $this->list;
+    }
+
+    public function setList(?Todolist $list): static
+    {
+        $this->list = $list;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->task;
     }
 }

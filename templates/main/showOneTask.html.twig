@@ -12,7 +12,7 @@
 				</tr>
 				<tr>
 					<td class="fw-bold">List</td>
-					<td>{{ task.listname }}</td>
+					<td>{{ listname }}</td>
 				</tr>
 				<tr>
 					<td class="fw-bold">Task</td>
@@ -42,9 +42,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="{{ path('show.all_tasks', {listname: task.listname}) }}">
+		<a href="{{ path('app.all_tasks', {listname: listname}) }}">
 			<button class="btn btn-primary btn-sm">Back</button>
 		</a>
-
 	</div>
 {% endblock %}

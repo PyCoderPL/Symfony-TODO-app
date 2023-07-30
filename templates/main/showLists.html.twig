@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container">
+		{% for message in app.flashes('list_notice') %}
+			<div class="alert alert-success d-flex justify-content-center">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<h1>TODO lists</h1>
+		<hr>
+		<table class="table table-striped">
+			<thead>
+				<tr class="fw-bold">
+					<td>ID</td>
+					<td>List name</td>
+					<td>About list</td>
+					<td>Tasks</td>
+					<td>Progress</td>
+					<td>Action</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for list in lists %}
+					<tr>
+						<td>{{ list.id }}</td>
+						<td>
+							<a href="{{ path('app.all_tasks', { listname: list.listname }) }}">{{ list.listname }}</a>
+						</td>
+						<td>{{ list.description }}</td>
+						<td>
+							{{ list.tasks }}
+						</td>
+						<td>
+							{% if list.tasks != 0 %}
+								{{ ((list.progress / list.tasks)*100)|number_format('0', '.', ' ') }}%
+							{% else %}
+								0%
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ path('app.edit_list', {listname: list.listname}) }}">
+								<button class="btn btn-warning btn-sm">Edit</button>
+							</a>
+							<a href="{{ path('app.remove_list', {listname: list.listname}) }}">
+								<button class="btn btn-danger btn-sm">Delete</button>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{{ path('app.create_new_list') }}">
+			<button class="btn btn-success btn-sm">Create new list</button>
+		</a>
+	</div>
+{% endblock %}

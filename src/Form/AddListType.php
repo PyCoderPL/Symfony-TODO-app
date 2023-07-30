@@ -21,7 +21,7 @@ class AddListType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('aboutlist', TextareaType::class, options: [
+            ->add('description', TextareaType::class, options: [
                 'label' => 'About list',
                 'attr' => [
                     'class' => 'form-control'
