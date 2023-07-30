@@ -16,16 +16,24 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="#">Register</a>
+								<a class="nav-link" href="{{ path('app_login') }}">Login</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Login</a>
+								<a class="nav-link" href="{{ path('app_register') }}">Register</a>
 							</li>
 						</ul>
 					</div>
 				</nav>
 				<br>
 			</div>
+			{% if app.user %}
+				<div class="mb-3 d-flex justify-content-center">
+					You are logged in as
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('app_logout') }}">
+						Logout</a>
+				</div>
+			{% endif %}
 			{% block body %}
 				<hr>
 			{% endblock %}
