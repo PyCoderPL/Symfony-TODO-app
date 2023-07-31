@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,6 +26,11 @@ class SecurityController extends AbstractController
     ) {
         $form = $this->createFormBuilder()
             ->add('username', TextType::class, array(
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ))
+            ->add('email', EmailType::class, array(
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -55,6 +61,7 @@ class SecurityController extends AbstractController
 
             $user = new User();
             $user->setUsername($data['username']);
+            $user->setEmail($data['email']);
             $user->setPassword($hasherInterface->hashPassword($user, $data['password']));
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -62,7 +69,10 @@ class SecurityController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('login_notice', 'Registration success!');
-                return $this->redirect($this->generateUrl('app_login'));
+                return $this->redirect($this->generateUrl('app_mailer', parameters: [
+                    'useremail' => $data['email'],
+                    'username' => $data['username']
+                ]));
             }
         }
         return $this->render(view: 'security/register.html.twig', parameters: [
