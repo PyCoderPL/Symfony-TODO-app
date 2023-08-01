@@ -40,18 +40,22 @@ class SecurityController extends AbstractController
                 ->to($user->getEmail())
                 ->subject('Welcome to TODO app!')
                 ->htmlTemplate('mailer/register.html.twig')
-                ->context([
+                ->context(
+                    [
                     'username' => $user->getUsername(),
                     'useremail' => $user->getEmail(),
                     'expiration_date' => new \DateTime('+7 days')
-                ]);
+                    ]
+                );
             $mailer->send($email);
 
             return $this->redirect($this->generateUrl('app_login'));
         }
-        return $this->render(view: 'security/register.html.twig', parameters: [
+        return $this->render(
+            view: 'security/register.html.twig', parameters: [
             'form' => $form
-        ]);
+            ]
+        );
     }
 
     #[Route(path: '/login', name: 'app_login')]

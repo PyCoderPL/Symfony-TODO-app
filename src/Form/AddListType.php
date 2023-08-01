@@ -15,29 +15,37 @@ class AddListType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('listname', TextType::class, options: [
+            ->add(
+                'listname', TextType::class, options: [
                 'label' => 'List name',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('description', TextareaType::class, options: [
+                ]
+            )
+            ->add(
+                'description', TextareaType::class, options: [
                 'label' => 'About list',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('save', SubmitType::class, options: [
+                ]
+            )
+            ->add(
+                'save', SubmitType::class, options: [
                 'attr' => [
                     'class' => 'btn btn-success btn-sm mt-3'
                 ]
-            ]);;
+                ]
+            );;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Todolist::class,
-        ]);
+            ]
+        );
     }
 }

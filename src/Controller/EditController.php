@@ -31,10 +31,12 @@ class EditController extends AbstractController
             $this->addFlash('list_notice', 'List was edited!');
             return $this->redirect($this->generateUrl(route: 'app.lists'));
         }
-        return $this->render(view: 'edit/editList.html.twig', parameters: [
+        return $this->render(
+            view: 'edit/editList.html.twig', parameters: [
             'listname' => $listname,
             'form' => $form
-        ]);
+            ]
+        );
     }
 
     // edit task
@@ -52,14 +54,20 @@ class EditController extends AbstractController
             $em->flush();
 
             $this->addFlash('task_notice', 'Task was edited!');
-            return $this->redirect($this->generateUrl(route: 'app.all_tasks', parameters: [
-                'listname' => $listname
-            ]));
+            return $this->redirect(
+                $this->generateUrl(
+                    route: 'app.all_tasks', parameters: [
+                    'listname' => $listname
+                    ]
+                )
+            );
         }
-        return $this->render(view: 'edit/editTask.html.twig', parameters: [
+        return $this->render(
+            view: 'edit/editTask.html.twig', parameters: [
             'listname' => $listname,
             'form' => $form
-        ]);
+            ]
+        );
     }
 
     #[Route('/change/{id}/{finished}', name: 'finished')]
@@ -79,8 +87,12 @@ class EditController extends AbstractController
             $this->addFlash('task_notice', 'Task was activated!');
         }
 
-        return $this->redirect($this->generateUrl('app.all_tasks', parameters: [
-            'listname' => $listname
-        ]));
+        return $this->redirect(
+            $this->generateUrl(
+                'app.all_tasks', parameters: [
+                'listname' => $listname
+                ]
+            )
+        );
     }
 }

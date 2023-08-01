@@ -34,9 +34,11 @@ class CreateController extends AbstractController
             $this->addFlash('list_notice', 'List was created!');
             return $this->redirect($this->generateURL('app.lists'));
         }
-        return $this->render(view: 'create/createNewList.html.twig', parameters: [
+        return $this->render(
+            view: 'create/createNewList.html.twig', parameters: [
             'form' => $form
-        ]);
+            ]
+        );
     }
 
     // create new task
@@ -58,15 +60,21 @@ class CreateController extends AbstractController
             $em->flush();
 
             $this->addFlash('task_notice', 'Task was created!');
-            return $this->redirect($this->generateUrl('app.all_tasks', parameters: [
-                'listname' => $listname
-            ]));
+            return $this->redirect(
+                $this->generateUrl(
+                    'app.all_tasks', parameters: [
+                    'listname' => $listname
+                    ]
+                )
+            );
         }
 
-        return $this->render(view: 'create/addNewTask.html.twig', parameters: [
+        return $this->render(
+            view: 'create/addNewTask.html.twig', parameters: [
             'form' => $form,
             'listname' => $listname
-        ]);
+            ]
+        );
     }
 
     // remove one list (except tasks)
@@ -94,8 +102,12 @@ class CreateController extends AbstractController
 
         $this->addFlash('task_notice', 'Task was removed!');
 
-        return $this->redirect($this->generateUrl('app.all_tasks', parameters: [
-            'listname' => $task->getList()
-        ]));
+        return $this->redirect(
+            $this->generateUrl(
+                'app.all_tasks', parameters: [
+                'listname' => $task->getList()
+                ]
+            )
+        );
     }
 }

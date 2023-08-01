@@ -18,9 +18,11 @@ class MainController extends AbstractController
     {
         // custom function
         $lists = $todolistRepo->getListInfo();
-        return $this->render(view: 'main/showLists.html.twig', parameters: [
+        return $this->render(
+            view: 'main/showLists.html.twig', parameters: [
             'lists' => $lists
-        ]);
+            ]
+        );
     }
 
     // display all tasks (all tasks from selected list)
@@ -30,19 +32,23 @@ class MainController extends AbstractController
         $list = $todolistRepo->findBy(array('listname' => $listname));
         $tasks = $taskRepo->findBy(array('list' => $list));
 
-        return $this->render(view: 'main/showTasks.html.twig', parameters: [
+        return $this->render(
+            view: 'main/showTasks.html.twig', parameters: [
             'list' => $list,
             'tasks' => $tasks
-        ]);
+            ]
+        );
     }
 
     // display one task
     #[Route('/{listname}/{id}', name: 'one_task')]
     public function showOneTask(Task $task, $listname): Response
     {
-        return $this->render(view: 'main/showOneTask.html.twig', parameters: [
+        return $this->render(
+            view: 'main/showOneTask.html.twig', parameters: [
             'listname' => $listname,
             'task' => $task
-        ]);
+            ]
+        );
     }
 }

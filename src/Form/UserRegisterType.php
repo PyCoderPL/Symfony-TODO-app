@@ -17,16 +17,20 @@ class UserRegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, array(
+            ->add(
+                'username', TextType::class, array(
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ))
-            ->add('email', EmailType::class, array(
+                )
+            )
+            ->add(
+                'email', EmailType::class, array(
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ))
+                )
+            )
             ->add(
                 'password',
                 RepeatedType::class,
@@ -40,17 +44,21 @@ class UserRegisterType extends AbstractType
                     'second_options' => ['label' => 'Confirm Password'],
                 )
             )
-            ->add('register', SubmitType::class, array(
+            ->add(
+                'register', SubmitType::class, array(
                 'attr' => [
                     'class' => 'btn btn-success btn-sm mt-3'
                 ]
-            ));
+                )
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class,
-        ]);
+            ]
+        );
     }
 }
