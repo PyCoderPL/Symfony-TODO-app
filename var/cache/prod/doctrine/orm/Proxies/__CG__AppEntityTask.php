@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Task extends \App\Entity\Task implements \Doctrine\Persistence\Proxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as __load;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -33,7 +33,7 @@ class Task extends \App\Entity\Task implements \Doctrine\Persistence\Proxy
         'id' => [parent::class, 'id', null],
         'list' => [parent::class, 'list', null],
         'task' => [parent::class, 'task', null],
-    ];
+    ];
 
     /**
      * @internal

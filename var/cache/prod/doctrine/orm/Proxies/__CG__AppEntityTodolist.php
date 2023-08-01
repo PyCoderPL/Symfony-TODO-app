@@ -7,7 +7,7 @@ namespace Proxies\__CG__\App\Entity;
  */
 class Todolist extends \App\Entity\Todolist implements \Doctrine\Persistence\Proxy
 {
-    use \Symfony\Component\VarExporter\LazyGhostTrait {
+     use \Symfony\Component\VarExporter\LazyGhostTrait {
         initializeLazyObject as __load;
         setLazyObjectAsInitialized as public __setInitialized;
         isLazyObjectInitialized as private;
@@ -25,7 +25,7 @@ class Todolist extends \App\Entity\Todolist implements \Doctrine\Persistence\Pro
         'id' => [parent::class, 'id', null],
         'listname' => [parent::class, 'listname', null],
         'tasks' => [parent::class, 'tasks', null],
-    ];
+    ];
 
     /**
      * @internal
