@@ -8,5 +8,8 @@ Simple TODO app with Symfony and MySQL
 - register and login form
 
 You can register as new user and play.
+**Test User:**
+login: Test
+password: test123
 
 Demo: http://todoapp.server054599.nazwa.pl/public/index.php/lists/
