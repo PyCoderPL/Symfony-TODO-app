@@ -9,6 +9,7 @@ Simple TODO app with Symfony and MySQL
 
 You can register as new user and play.
 **Test User:**
+
 login: Test
 password: test123
 
